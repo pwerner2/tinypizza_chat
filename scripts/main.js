@@ -2,21 +2,29 @@
 
 	$(document).ready(function(){
 		$('.submitmsg').click(function(){
-			var 
+			
+var $url = 'http://tiny-pizza-server.herokuapp.com/collections/greenville-chats';
+var $usr;
+var $msg;
 
 $.ajax({
-	url: 'http://tiny-pizza-server.herokuapp.com/collections/greenville-chats',
+	url: $url,
 	type: 'GET',
-	datatype: 'jsonp',
-
-	});
+	});.done(function(data){
+	console.log(data);
+});
 
 $.ajax({
-	url: 'http://tiny-pizza-server.herokuapp.com/collections/greenville-chats',
+	url: $url,
 	type: 'POST',
-	datatype: 'jsonp',
-
-	});
+	data: {
+		message:'#',
+		username:'#',
+		createdAt: Date.now()
+	}
+	}).done(function(data) {
+	console.log(data);
+});
 
 function renderTemplate(name, data) {
 	var $template = $('[data-template-name=' + name + ']').text();
