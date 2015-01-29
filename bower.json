@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/pwerner2/tinypizza_chat",
   "authors": [
-    "Patrick Werner <pwerner2@gmail.com>"
+    "Patrick Werner <pwerner2@gmail.com>", "Weston Humphreys <weston_leigh@yahoo.com>"
   ],
   "description": "tiny pizza chat",
   "main": "index.html",
