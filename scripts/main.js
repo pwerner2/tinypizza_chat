@@ -1,43 +1,3 @@
-// (function(){
-//
-// 	$(document).ready(function(){
-// 		$('.submitmsg').click(function(){
-//
-// var $url = 'http://tiny-pizza-server.herokuapp.com/collections/greenville-chats';
-// var $usr;
-// var $msg;
-//
-// $.ajax({
-// 	url: $url,
-// 	type: 'GET',
-// 	});.done(function(data){
-// 	console.log(data);
-// });
-//
-// $.ajax({
-// 	url: $url,
-// 	type: 'POST',
-// 	data: {
-// 		message:'shibbidy doo wop',
-// 		username:'frank sinatra',
-// 		createdAt: Date.now()
-// 	}
-// 	}).done(function(data) {
-// 	console.log(data);
-// });
-//
-// function renderTemplate(name, data) {
-// 	var $template = $('[data-template-name=' + name + ']').text();
-// 		$.each(data, function(prop, value) {
-// 			$template = $template.replace('<% ' + data + ' %>', value);
-// 		});
-//
-// 		});
-// 	});
-// });
-// });
-
-
 (function() {
 	'use strict';
 
@@ -46,7 +6,7 @@
 
 
 		var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
-		
+
 		var userName = prompt("Username?");
 
 		if (username === null){
@@ -80,14 +40,14 @@
 		}
 
 // message retrieval
-		
+
 	function getMsg() {
 	messageTemplate.empty();
 	$.ajax({
 		url: servUrl,
 		type: "GET"
 	}).done(function(messages) {
-	
+
 	messages = messages.reverse();
 	_.each(messages, function(message) {
 
@@ -100,7 +60,7 @@
 		if (message.message == null) {
 			message.message = '';
 		}
-		
+
 		if (message.username == null) {
 			message.username = '';
 		}
