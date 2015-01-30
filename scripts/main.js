@@ -79,7 +79,7 @@
 			});
 		}
 
-		// message retrieval
+// message retrieval
 		
 	function getMsg() {
 	messageTemplate.empty();
