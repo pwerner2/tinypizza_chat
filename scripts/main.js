@@ -16,7 +16,9 @@
 		var renderMessageTemplate = _.template($('.message-data').text());
 		var messageTemplate = $('.messages-list');
 
-		$('.send-button').on('click', sendMessage);
+		$('.send-button').on('click', sendMessage){
+			event.preventDefault();
+		}
 
 		function storeUsername() {
 			userName = $('.username-field').val();
@@ -28,7 +30,7 @@
 			var newMessage = $('.text-box').val();
 			$.ajax({
 				url: servUrl,
-				type: "POST",
+				type: 'POST',
 				data: {
 					username: userName,
 					message: newMessage,
@@ -38,6 +40,8 @@
 				console.log(data);
 			});
 		}
+	})
+})
 
 // message retrieval
 
@@ -45,14 +49,14 @@
 	messageTemplate.empty();
 	$.ajax({
 		url: servUrl,
-		type: "GET"
+		type: 'GET'
 	}).done(function(messages) {
 
 	messages = messages.reverse();
 	_.each(messages, function(message) {
 
 		if (message.created.At == null) {
-			message.createdAt = "unknown";
+			message.createdAt = 'unknown';
 		} else {
 			message.createdAt = moment(message.createdAt).fromNow();
 		}
@@ -66,7 +70,7 @@
 		}
 
 		messageTemplate.append(renderMessageTemplate(message));
-		$('messages-container').scrollTop($'.messages-container').prop('scrollHeight'));
+//		$('messages-container').scrollTop($'.messages-container').prop('scrollHeight'));
 	});
 	});
-});
+};
