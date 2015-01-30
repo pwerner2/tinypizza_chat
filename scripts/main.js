@@ -78,6 +78,8 @@
 				console.log(data);
 			});
 		}
+	})
+})
 
 // message retrieval
 		
