@@ -75,4 +75,12 @@
 	});
 };
 
+ function renderTemplate(name, data) {
+    var $template = $('[data-template-name=' + name + ']').text();
+    $.each(data, function(prop, value) {
+      $template = $template.replace('<% ' + prop + ' %>', value);
+    });
+    return $template;
+  }
 
+})();
