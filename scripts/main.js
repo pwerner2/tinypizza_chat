@@ -6,7 +6,7 @@
 
 
 		var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
-		
+
 		var userName = prompt("Username?");
 
 		if (username === null){
@@ -44,14 +44,14 @@
 })
 
 // message retrieval
-		
+
 	function getMsg() {
 	messageTemplate.empty();
 	$.ajax({
 		url: servUrl,
 		type: 'GET'
 	}).done(function(messages) {
-	
+
 	messages = messages.reverse();
 	_.each(messages, function(message) {
 
@@ -64,7 +64,7 @@
 		if (message.message == null) {
 			message.message = '';
 		}
-		
+
 		if (message.username == null) {
 			message.username = '';
 		}
