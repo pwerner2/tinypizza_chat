@@ -1,5 +1,7 @@
 body {
-  background-color: #c0d860; }
+  background-color: #c0d860;
+  font-family: 'Play', sans-serif;
+  }
 
 li {
   border-bottom: solid #607848 1px;
@@ -10,13 +12,32 @@ li {
 
 li img {
   max-width: 300px;
-  max-height: 300px; }
+  max-height: 300px;
+  font-size: 16px;
+  }
 
 .chat-box {
-  margin: 75px auto;
+  margin: 25px auto;
   border: solid #607848 3px;
   border-radius: 8%;
   background-color: #f0f0d8;
   width: 700px;
   height: 555px;
-  overflow: scroll; }
+  overflow: scroll;
+  font-size: 16px;
+  }
+
+.character-input{
+  margin-left: 275px;
+  background-color: #f0f0d8;
+  color: #604848;
+  width: 500px;
+  height: 1em;
+}
+
+.send-button{
+  border: solid #607848 3px;
+  background-color: #c0d860;
+  color: #604848;
+  font-size: 16px;
+}
