@@ -1,76 +1,72 @@
 (function() {
 	'use strict';
 
+var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+var userName = "";
+var messageContent = "";
+var currentTime = "";
+var chatTemplate = "";
 
-	$(document).ready(function() {
+$(document).ready(function() {
+
+	currentTime = Date.now();
+
+	var $messageContainer = $('.messageContainer');
 
 
-		var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+$('#logButton').on('click', function(){
+	event.preventDefault();
+	if($(".userName-value").val() === '') {
+	prompt("Enter an username");
+	} else {
+	username = $(".userName-value").val();
+	console.log(userName);
+	$('.userName-stored').text(userName);
+	$('.message-reply').removeClass('hidden');
+	$('.messageContainer').scrollTop($('.messageContainer')[0].scrollHeight);
+	$('.messageContainer').removeClass('hidden');
+	$('messageContainer userName').addClass('hidden');
+     }
 
-		var userName = prompt("Username?");
+   });
+});
 
-		if (username === null){
-			userName = "Anonymous";
-		}
+var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
+  $.ajax(baseURL).done(function(posts) {
+    _.each(posts, function(post) {
+      _.defaults(post, {
+        message: "",
+        username: "",
+        createdAt: ""
+      });
+      $messageboardContainer.append(messageboardTemplate(post));
+    });
+  });
 
-		var renderMessageTemplate = _.template($('.message-data').text());
-		var messageTemplate = $('.messages-list');
+$('.submit').click(function() {
+    username = ("#submit").value();
+    console.log('username');
+  });
+setInterval(messageboardTemplate, 7000);
 
-		$('.send-button').on('click', sendMessage);{
-			event.preventDefault();
-		}
+  $('#submit-chat').on('click', function(){
+    event.preventDefault();
+    if($("#input-field").val() === ''){
+      alert("I SAID TO SAY SOMETHING");
+    } else {
+      messageContent = $("#input-field").val();
+      console.log(messageContent);
+      $.ajax({
+        url: baseURL,
+        type: "POST",
+        data: {
+          message: messageContent,
+          username: username,
+          createdAt: Date.now()
+        }
+      });
+    }
+    $('#input-field').val('');
+  });
 
-		function storeUsername() {
-			userName = $('.username-field').val();
-			console.log(userName);
-		}
-
-		function sendMessage() {
-			var timeStamp = moment().format();
-			var newMessage = $('.text-box').val();
-			$.ajax({
-				url: servUrl,
-				type: 'POST',
-				data: {
-					username: userName,
-					message: newMessage,
-					createdAt: timeStamp
-				}
-			}).done(function(data) {
-				console.log(data);
-			});
-		}
-	});
 })();
-
-// message retrieval
-
-	function getMsg() {
-	messageTemplate.empty();
-	$.ajax({
-		url: servUrl,
-		type: 'GET'
-	}).done(function(messages) {
-
-	messages = messages.reverse();
-	_.each(messages, function(message) {
-
-		if (message.created.At === null) {
-			message.createdAt = 'unknown';
-		} else {
-			message.createdAt = moment(message.createdAt).fromNow();
-		}
-
-		if (message.message === null) {
-			message.message = '';
-		}
-
-		if (message.username === null) {
-			message.username = '';
-		}
-
-		messageTemplate.append(renderMessageTemplate(message));
-//		$('messages-container').scrollTop($'.messages-container').prop('scrollHeight'));
-	});
-	});
-}
