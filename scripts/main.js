@@ -32,7 +32,7 @@ $('#logButton').on('click', function(){
 });
 
 var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
-  $.ajax(baseURL).done(function(posts) {
+  $.ajax(servUrl).done(function(posts) {
     _.each(posts, function(post) {
       _.defaults(post, {
         message: "",
@@ -52,12 +52,12 @@ setInterval(messageboardTemplate, 7000);
   $('#submit-chat').on('click', function(){
     event.preventDefault();
     if($("#input-field").val() === ''){
-      alert("I SAID TO SAY SOMETHING");
+      alert("pizza bell taco hut");
     } else {
       messageContent = $("#input-field").val();
       console.log(messageContent);
       $.ajax({
-        url: baseURL,
+        url: servUrl,
         type: "POST",
         data: {
           message: messageContent,
