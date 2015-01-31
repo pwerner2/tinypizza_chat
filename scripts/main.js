@@ -11,28 +11,28 @@ $(document).ready(function() {
 
 	currentTime = Date.now();
 
-	var $chatContainer = $('.chatContainer');
+	var $messageContainer = $('.messageContainer');
 
 
 $('#logButton').on('click', function(){
 	event.preventDefault();
 	if($(".userName-value").val() === '') {
-	alert("Enter an username");
+	prompt("Enter an username");
 	} else {
 	username = $(".userName-value").val();
 	console.log(userName);
 	$('.userName-stored').text(userName);
 	$('.message-reply').removeClass('hidden');
-	$('.chatContainer').scrollTop($('.chatContainer')[0].scrollHeight);
-	$('.chatContainer').removeClass('hidden');
-	$('chatContainer userName').addClass('hidden');
+	$('.messageContainer').scrollTop($('.messageContainer')[0].scrollHeight);
+	$('.messageContainer').removeClass('hidden');
+	$('messageContainer userName').addClass('hidden');
      }
 
    });
 });
 
 var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
-  $.ajax(baseURL).done(function(posts) {
+  $.ajax(servUrl).done(function(posts) {
     _.each(posts, function(post) {
       _.defaults(post, {
         message: "",
@@ -52,12 +52,12 @@ setInterval(messageboardTemplate, 7000);
   $('#submit-chat').on('click', function(){
     event.preventDefault();
     if($("#input-field").val() === ''){
-      alert("I SAID TO SAY SOMETHING");
+      alert("pizza bell taco hut");
     } else {
       messageContent = $("#input-field").val();
       console.log(messageContent);
       $.ajax({
-        url: baseURL,
+        url: servUrl,
         type: "POST",
         data: {
           message: messageContent,
