@@ -1,86 +1,72 @@
 (function() {
 	'use strict';
 
+var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+var userName = "";
+var messageContent = "";
+var currentTime = "";
+var chatTemplate = "";
 
-	$(document).ready(function() {
+$(document).ready(function() {
+
+	currentTime = Date.now();
+
+	var $chatContainer = $('.chatContainer');
 
 
-		var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+$('#logButton').on('click', function(){
+	event.preventDefault();
+	if($(".userName-value").val() === '') {
+	alert("Enter an username");
+	} else {
+	username = $(".userName-value").val();
+	console.log(userName);
+	$('.userName-stored').text(userName);
+	$('.message-reply').removeClass('hidden');
+	$('.chatContainer').scrollTop($('.chatContainer')[0].scrollHeight);
+	$('.chatContainer').removeClass('hidden');
+	$('chatContainer userName').addClass('hidden');
+     }
 
-		var userName = prompt("Username?");
+   });
+});
 
-		if (username === null){
-			userName = "Anonymous";
-		}
-
-		var renderMessageTemplate = _.template($('.message-data').text());
-		var messageTemplate = $('.messages-list');
-
-		$('.send-button').on('click', sendMessage){
-			event.preventDefault();
-		}
-
-		function storeUsername() {
-			userName = $('.username-field').val();
-			console.log(userName);
-		}
-
-		function sendMessage() {
-			var timeStamp = moment().format();
-			var newMessage = $('.text-box').val();
-			$.ajax({
-				url: servUrl,
-				type: 'POST',
-				data: {
-					username: userName,
-					message: newMessage,
-					createdAt: timeStamp
-				}
-			}).done(function(data) {
-				console.log(data);
-			});
-		}
-	})
-})
-
-// message retrieval
-
-	function getMsg() {
-	messageTemplate.empty();
-	$.ajax({
-		url: servUrl,
-		type: 'GET'
-	}).done(function(messages) {
-
-	messages = messages.reverse();
-	_.each(messages, function(message) {
-
-		if (message.created.At == null) {
-			message.createdAt = 'unknown';
-		} else {
-			message.createdAt = moment(message.createdAt).fromNow();
-		}
-
-		if (message.message == null) {
-			message.message = '';
-		}
-
-		if (message.username == null) {
-			message.username = '';
-		}
-
-		messageTemplate.append(renderMessageTemplate(message));
-//		$('messages-container').scrollTop($'.messages-container').prop('scrollHeight'));
-	});
-	});
-};
-
- function renderTemplate(name, data) {
-    var $template = $('[data-template-name=' + name + ']').text();
-    $.each(data, function(prop, value) {
-      $template = $template.replace('<% ' + prop + ' %>', value);
+var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
+  $.ajax(baseURL).done(function(posts) {
+    _.each(posts, function(post) {
+      _.defaults(post, {
+        message: "",
+        username: "",
+        createdAt: ""
+      });
+      $messageboardContainer.append(messageboardTemplate(post));
     });
-    return $template;
-  }
+  });
+
+$('.submit').click(function() {
+    username = ("#submit").value();
+    console.log('username');
+  });
+setInterval(messageboardTemplate, 7000);
+
+  $('#submit-chat').on('click', function(){
+    event.preventDefault();
+    if($("#input-field").val() === ''){
+      alert("I SAID TO SAY SOMETHING");
+    } else {
+      messageContent = $("#input-field").val();
+      console.log(messageContent);
+      $.ajax({
+        url: baseURL,
+        type: "POST",
+        data: {
+          message: messageContent,
+          username: username,
+          createdAt: Date.now()
+        }
+      });
+    }
+    $('#input-field').val('');
+  });
 
 })();
