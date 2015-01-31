@@ -16,7 +16,7 @@
 		var renderMessageTemplate = _.template($('.message-data').text());
 		var messageTemplate = $('.messages-list');
 
-		$('.send-button').on('click', sendMessage){
+		$('.send-button').on('click', sendMessage);{
 			event.preventDefault();
 		}
 
@@ -40,8 +40,8 @@
 				console.log(data);
 			});
 		}
-	})
-})
+	});
+})();
 
 // message retrieval
 
@@ -55,17 +55,17 @@
 	messages = messages.reverse();
 	_.each(messages, function(message) {
 
-		if (message.created.At == null) {
+		if (message.created.At === null) {
 			message.createdAt = 'unknown';
 		} else {
 			message.createdAt = moment(message.createdAt).fromNow();
 		}
 
-		if (message.message == null) {
+		if (message.message === null) {
 			message.message = '';
 		}
 
-		if (message.username == null) {
+		if (message.username === null) {
 			message.username = '';
 		}
 
@@ -73,4 +73,4 @@
 //		$('messages-container').scrollTop($'.messages-container').prop('scrollHeight'));
 	});
 	});
-};
+}
