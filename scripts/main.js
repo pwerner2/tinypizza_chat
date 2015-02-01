@@ -1,17 +1,22 @@
 (function() {
 	'use strict';
 
-var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+
 var userName = "";
 var messageContent = "";
 var currentTime = "";
 var chatTemplate = "";
 
+var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
+var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
+var $messageContainer = $('.messageContainer');
+
+
 $(document).ready(function() {
 
 	currentTime = Date.now();
 
-	var $messageContainer = $('.messageContainer');
+
 
 
 $('#logButton').on('click', function(){
@@ -31,17 +36,15 @@ $('#logButton').on('click', function(){
    });
 });
 
-var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
+$(document).ready(function() {
   $.ajax(servUrl).done(function(posts) {
     _.each(posts, function(post) {
-      _.defaults(post, {
-        message: "",
-        username: "",
-        createdAt: ""
-      });
-      $messageboardContainer.append(messageboardTemplate(post));
+      $messageContainer.append(messageboardTemplate(post));
+			console.log(posts);
     });
   });
+});
+
 
 $('.submit').click(function() {
     username = ("#submit").value();
@@ -49,7 +52,7 @@ $('.submit').click(function() {
   });
 setInterval(messageboardTemplate, 7000);
 
-  $('#submit-chat').on('click', function(){
+  $('.send-button').on('click', function(){
     event.preventDefault();
     if($("#input-field").val() === ''){
       alert("pizza bell taco hut");

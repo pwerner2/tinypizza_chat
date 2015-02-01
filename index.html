@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 
-	<title>tinypizzachat</title>
+	<title>The O&apos;Leary Chat Interface</title>
 	<link rel="stylesheet" href="styles/main.css">
 	<link href="http://fonts.googleapis.com/css?family=Play" rel="stylesheet" type="text/css">
 
@@ -23,11 +23,22 @@
 
 	</form>
 
+<script type="text/template" data-template-name="message-post">
+	<li>
 
-	<script src="scripts/main.js"></script>
+		<%= username %>
+		<%= message %>
+		<%= moment(createdAt).fromNow() %>
+
+	</li>
+
+</script>
+
+
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
 	<script src="bower_components/moment/moment.js"></script>
+	<script src="scripts/main.js"></script>
 
 </body>
 
