@@ -1,16 +1,20 @@
 (function() {
 	'use strict';
 
+<<<<<<< HEAD
 
 var userName = "";
 var messageContent = "";
 var currentTime = "";
 var chatTemplate = "";
 
+=======
+>>>>>>> WH-Code
 var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-chats";
 var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
 var $messageContainer = $('.messageContainer');
 
+<<<<<<< HEAD
 
 $(document).ready(function() {
 
@@ -36,6 +40,8 @@ $('#logButton').on('click', function(){
    });
 });
 
+=======
+>>>>>>> WH-Code
 $(document).ready(function() {
   $.ajax(servUrl).done(function(posts) {
     _.each(posts, function(post) {
@@ -44,6 +50,7 @@ $(document).ready(function() {
     });
   });
 });
+<<<<<<< HEAD
 
 
 $('.submit').click(function() {
@@ -72,4 +79,6 @@ setInterval(messageboardTemplate, 7000);
     $('#input-field').val('');
   });
 
+=======
+>>>>>>> WH-Code
 })();
