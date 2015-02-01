@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 
-	<title>tinypizzachat</title>
+	<title>The O&apos;Leary Chat Interface</title>
 	<link rel="stylesheet" href="styles/main.css">
 	<link href="http://fonts.googleapis.com/css?family=Play" rel="stylesheet" type="text/css">
 
@@ -13,28 +13,32 @@
 <body>
 
 	<div class="chat-box">
-		<ul class="chat-posts">
-			<li>An example post</li>
-			<li>An example post that is way longer and maybe even bordering on obnoxious and obtrusive</li>
-			<li>An example post with an image <img src="http://images.nationalgeographic.com/wpf/media-live/photos/000/184/cache/peacock-mantis-shrimp_18428_990x742.jpg" alt="picture-1"></li>
-			<li>An example post</li>
-			<li>An example post with an image that is way too big <img src="http://images.gizmag.com/hero/mantis_shrimp_body_armor-7.jpg" alt="picture0"></li>
-				<li>An example post</li>
-				<li>An example post with an image <img src="https://weeklyworldnews.files.wordpress.com/2011/06/killer_jellyfishb.jpg" alt="picture1"></li>
-				<li>An example post with an image <img src="http://i1-news.softpedia-static.com/images/news2/Plastic-Pollution-Kills-Sperm-Whales-Conservationists-Say-2.jpg" alt="picture2"></li>
+		<ul class="messageContainer">
 		</ul>
 	</div>
 
 
 	<form class ="post-form">
 		<input class="character-input" name="message" type="text"><input class="send-button" type="submit">
+
 	</form>
 
+<script type="text/template" data-template-name="message-post">
+	<li>
 
-	<script src="scripts/main.js"></script>
+		<%= username %>
+		<%= message %>
+		<%= moment(createdAt).fromNow() %>
+
+	</li>
+
+</script>
+
+
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
 	<script src="bower_components/moment/moment.js"></script>
+	<script src="scripts/main.js"></script>
 
 </body>
 
