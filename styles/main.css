@@ -3,16 +3,16 @@ body {
   font-family: 'Play', sans-serif; }
 
 li {
-  border-bottom: solid #607848 1px;
-  width: 90%;
+  border-bottom: solid #607848  1px;
   padding: 5px;
+  width: 90%;
   list-style: none;
-  color: #604848; }
+  color: #604848;
+  font-size: 16px; }
 
 li img {
   max-width: 300px;
-  max-height: 300px;
-  font-size: 16px; }
+  max-height: 300px; }
 
 .chat-box {
   margin: 30px auto;
@@ -21,7 +21,21 @@ li img {
   background-color: #f0f0d8;
   width: 700px;
   height: 555px;
-  overflow: scroll; }
+  overflow: scroll;
+  font-size: 16px; }
+
+.character-input {
+  margin-left: 275px;
+  background-color: #f0f0d8;
+  width: 500px;
+  height: 1em;
+  color: #604848; }
+
+.send-button {
+  border: solid #607848  3px;
+  background-color: #c0d860;
+  color: #604848;
+  font-size: 16px; }
 
 .displayed-username {
   padding-right: 20px;

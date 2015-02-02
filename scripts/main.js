@@ -12,8 +12,12 @@ var $msgLog = "";
 
 //this is the part that pulls and displays msgs from server. Vars inconsistent w/pbranch
 
+
+
+//Template for Displaying Posts
+
 $(document).ready(function() {
-	
+
 	currentTime = Date.now();
 
 	username = prompt("please enter a username!");
@@ -52,7 +56,7 @@ $('#send-button').on('click', function() {
 })();
 
 	function getData() {
-		
+
 		$.ajax(serverUrl).done(chatFilter);
 	}
 
@@ -68,4 +72,3 @@ $('#send-button').on('click', function() {
 	}
 
 setInterval(getData, 3000);
-
