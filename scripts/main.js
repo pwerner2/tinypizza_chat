@@ -5,6 +5,8 @@ var servUrl = "http://tiny-pizza-server.herokuapp.com/collections/greenville-cha
 var messageboardTemplate = _.template($('[data-template-name=message-post]').text());
 var $messageContainer = $('.messageContainer');
 
+//this is the part that pulls and displays msgs from server. Vars inconsistent w/pbranch
+
 $(document).ready(function() {
   $.ajax(servUrl).done(function(posts) {
     _.each(posts, function(post) {
