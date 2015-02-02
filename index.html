@@ -27,9 +27,9 @@
 <script type="text/template" data-template-name="message-post">
 	<li>
 
-		<span class="displayed-username"><%= username %></span>
-		<span class="displayed-message"><%= message %></span>
-		<span class="displayed-time"><%= moment(createdAt).fromNow() %></span>
+		<span class="displayed-username"><%= data.username %></span>
+		<span class="displayed-message"><%= data.message %></span>
+		<span class="displayed-time"><%= data.createdAt ? moment(data.createdAt).fromNow() : '' %></span>
 	</li>
 
 </script>

@@ -5,6 +5,7 @@ var msgcontent = "";
 var username = "";
 var currentTime = "";
 var $msgLog = "";
+var chatbox = $('.chat-box');
 
 (function() {
 	'use strict';
@@ -19,8 +20,9 @@ $(document).ready(function() {
 
   $.ajax(serverUrl).done(function(posts) {
     _.each(posts, function(post) {
-      $messageContainer.append(messageboardTemplate(post));
-			console.log(posts);
+      console.log('post is', post);
+	    $messageContainer.append(messageboardTemplate({data: post}));
+			
     });
   });
 });
@@ -61,7 +63,7 @@ $('#send-button').on('click', function() {
 		});
 
 		_.each(filteredData, function(printData) {
-			$msgLog.append($message-post(printData));
+			$messageContainer.append($messageboardTemplate(printData));
 			$('.message-reply').scrollTop($("messageboardTemplate")[0].scrollHeight);
 		});
 	}
