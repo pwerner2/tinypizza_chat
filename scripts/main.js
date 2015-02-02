@@ -9,11 +9,6 @@ var $msgLog = "";
 (function() {
 	'use strict';
 
-
-//this is the part that pulls and displays msgs from server. Vars inconsistent w/pbranch
-
-
-
 //Template for Displaying Posts
 
 $(document).ready(function() {
